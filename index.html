@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>For You ❤️</title>
+  <title>Our Story ❤️</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
@@ -9,20 +9,26 @@
     body {
       margin: 0;
       height: 100vh;
-      background: black;
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: 'Pacifico', cursive;
       color: white;
+      background: radial-gradient(circle at top, #2b1055, #000000 70%);
     }
 
-    .screen {
+    .scene {
       text-align: center;
-      font-size: 45px;
-      max-width: 80%;
-      animation: fade 2s ease-in-out;
+      max-width: 90%;
+      animation: fade 1.5s ease-in-out;
+    }
+
+    img {
+      max-width: 85%;
+      border-radius: 15px;
+      margin-top: 20px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.3);
     }
 
     @keyframes fade {
@@ -44,45 +50,63 @@
     }
 
     .btn {
-      margin-top: 20px;
-      padding: 10px 20px;
+      padding: 12px 25px;
       border: none;
       background: #ff3366;
       color: white;
       font-size: 18px;
-      border-radius: 20px;
+      border-radius: 25px;
       cursor: pointer;
+      margin-top: 20px;
+    }
+
+    iframe {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: none;
     }
   </style>
 </head>
 
 <body>
 
-<div class="screen" id="screen">
-  <div id="text">Press Start ❤️</div>
+<!-- 🎵 Music -->
+<iframe
+src="https://www.youtube.com/embed/450p7goxZqg?autoplay=1&loop=1&playlist=450p7goxZqg"
+allow="autoplay">
+</iframe>
+
+<div class="scene" id="scene">
+  <div style="font-size:40px;">Press Start ❤️</div>
   <button class="btn" onclick="start()">Start</button>
 </div>
 
 <script>
   const scenes = [
-    "It all started with you...",
-    "Then everything changed quietly...",
-    "You became my favorite thought...",
-    "Even my silence thinks about you...",
-    "I don’t know how, but you matter a lot...",
-    "I love you ❤️"
+    { text: "It all started with you...", img: "IMG_6159.jpeg" },
+    { text: "You became my favorite thought ❤️", img: "IMG_6161.jpeg" },
+    { text: "Every moment feels better with you...", img: "IMG_6154.jpeg" },
+    { text: "And I never want it to end...", img: "IMG_6164.jpeg" },
+    { text: "I love you ❤️", img: "" }
   ];
 
   let i = 0;
-  let screen = document.getElementById("screen");
+  let scene = document.getElementById("scene");
 
   function start() {
     showScene();
-    setInterval(showScene, 3500);
+    setInterval(showScene, 4000);
   }
 
   function showScene() {
-    screen.innerHTML = "<div>" + scenes[i] + "</div>";
+    let data = scenes[i];
+
+    scene.innerHTML = `
+      <div style="font-size:35px; margin-bottom:10px;">${data.text}</div>
+      ${data.img ? `<img src="${data.img}">` : ""}
+    `;
+
     i = (i + 1) % scenes.length;
   }
 
