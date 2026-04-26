@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For You ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle, #1a1a1a, #000000);
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .text {
+      font-size: 40px;
+      text-align: center;
+      max-width: 80%;
+      line-height: 1.5;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff4d6d;
+        transform: scale(0.98);
+      }
+      to {
+        text-shadow: 0 0 20px #ff99aa, 0 0 40px #ff4d6d;
+        transform: scale(1.02);
+      }
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff4d6d;
+      font-size: 20px;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="text" id="story">I love you ❤️</div>
+
+<script>
+  const messages = [
+    "I love you ❤️",
+    "You’re always on my mind...",
+    "No matter the distance, I feel you close...",
+    "You became my favorite thought...",
+    "And I just want you to know this...",
+    "You mean more than words can say ❤️"
+  ];
+
+  let i = 0;
+  const story = document.getElementById("story");
+
+  setInterval(() => {
+    i = (i + 1) % messages.length;
+    story.textContent = messages[i];
+  }, 3000);
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 25 + 10 + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+  }
+
+  setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
