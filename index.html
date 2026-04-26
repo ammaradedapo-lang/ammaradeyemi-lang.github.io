@@ -57,7 +57,14 @@
       font-size: 18px;
       border-radius: 25px;
       cursor: pointer;
-      margin-top: 20px;
+      margin: 10px;
+    }
+
+    .musicBtn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index: 10;
     }
 
     iframe {
@@ -72,10 +79,13 @@
 <body>
 
 <!-- 🎵 Music -->
-<iframe
-src="https://www.youtube.com/embed/450p7goxZqg?autoplay=1&loop=1&playlist=450p7goxZqg"
+<iframe id="music"
+src="https://www.youtube.com/embed/450p7goxZqg?enablejsapi=1"
 allow="autoplay">
 </iframe>
+
+<!-- 🎵 Music Button -->
+<button class="btn musicBtn" onclick="playMusic()">🎵 Play Music</button>
 
 <div class="scene" id="scene">
   <div style="font-size:40px;">Press Start ❤️</div>
@@ -108,6 +118,11 @@ allow="autoplay">
     `;
 
     i = (i + 1) % scenes.length;
+  }
+
+  function playMusic() {
+    let iframe = document.getElementById("music");
+    iframe.src = "https://www.youtube.com/embed/450p7goxZqg?autoplay=1&loop=1&playlist=450p7goxZqg";
   }
 
   function createHeart() {
